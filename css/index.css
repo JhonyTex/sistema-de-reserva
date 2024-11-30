@@ -1,0 +1,240 @@
+ /* Estilos generales */
+ body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f0e5f7, #d7c4f7);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+
+/* Header de navegación */
+.header {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    border-radius: 0 0 15px 15px;
+}
+
+/* Logo */
+.logo {
+    height: 50px;
+}
+
+/* Menú de navegación */
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #8367f7;
+}
+
+.menu-icon, .back-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.menu-icon:hover, .back-button:hover {
+    transform: scale(1.2);
+}
+
+/* Botón de registro */
+.auth-button {
+    background: linear-gradient(135deg, #8367f7, #6545b0);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.auth-button:hover {
+    background: linear-gradient(135deg, #6545b0, #8367f7);
+    transform: translateY(-3px);
+}
+
+/* Sección de bienvenida */
+.welcome-section {
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.welcome-section h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 2em;
+}
+
+.welcome-section p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* Frase motivacional */
+.motto {
+    margin-top: 15px;
+    font-style: italic;
+    color: #666;
+}
+
+ /* Estilo para las imágenes del carrusel */
+.carousel-image {
+width: 100%; /* Ajusta el ancho a 100% */
+height: 400px; /* Define una altura fija */
+object-fit: cover; /* Mantiene la proporción de la imagen y la recorta si es necesario */
+}
+
+/* Sección de servicios */
+.services-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.service {
+    background-color: #f4e1ff;
+    color: rgb(85, 76, 76);
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.service:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+.service img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.service h4 {
+    margin-top: 10px;
+}
+
+/* Banner */
+#banner .carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    background-color: #8367f7;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subscribe-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.subscribe-form input, .subscribe-form button {
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+.subscribe-form button {
+    background-color: #6545b0;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.subscribe-form button:hover {
+    background-color: #8367f7;
+}
+
+.social-icons {
+    text-align: left;
+}
+
+.social-icons a {
+    color: white;
+    margin-right: 10px;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #d7c4f7;
+}
+
+nav ul li a:hover {
+    border-radius: 20px;
+    background-color: #ff69b4; /* Color rosado al pasar el mouse */
+    color: white; /* Cambia el color del texto al blanco */
+}
+
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

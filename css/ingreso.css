@@ -1,0 +1,61 @@
+ /* Estilos de la página de inicio de sesión */
+ body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f0e5f7, #d7c4f7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin-top: 100px; /* Ajuste para el menú fijo */
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-control, .form-select {
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.login-button {
+    background: linear-gradient(135deg, #8367f7, #6545b0);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+.login-button:hover {
+    background: linear-gradient(135deg, #6545b0, #8367f7);
+}
+
+.login-container .footer-link {
+    color: #8367f7;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login-container .footer-link:hover {
+    text-decoration: underline;
+}

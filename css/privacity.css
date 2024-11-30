@@ -1,0 +1,181 @@
+
+        /* Estilos generales */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f0e5f7, #d7c4f7);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        /* Header de navegación */
+        .header {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            position: fixed;
+            top: 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            border-radius: 0 0 15px 15px;
+        }
+
+        /* Logo */
+        .logo {
+            height: 50px;
+        }
+
+        /* Menú de navegación */
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #8367f7;
+            border-radius: 20px;
+            background-color: #ff69b4; /* Color rosado al pasar el mouse */
+            color: white; /* Cambia el color del texto al blanco */
+        }
+
+        .menu-icon, .back-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-icon:hover, .back-button:hover {
+            transform: scale(1.2);
+        }
+
+        /* Sección de políticas */
+        .privacy-policy {
+            margin-top: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            text-align: left;
+        }
+
+        .privacy-policy h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 2em;
+        }
+
+        .privacy-policy p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .privacy-policy ul {
+            margin-left: 20px;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            background-color: #8367f7;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            background-color: #8367f7;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .subscribe-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .subscribe-form input, .subscribe-form button {
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .subscribe-form button {
+            background-color: #6545b0;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .subscribe-form button:hover {
+            background-color: #8367f7;
+        }
+
+        .social-icons {
+            text-align: left;
+        }
+
+        .social-icons a {
+            color: white;
+            margin-right: 10px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #d7c4f7;
+        }
