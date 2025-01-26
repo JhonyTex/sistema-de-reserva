@@ -1,5 +1,5 @@
 <?php
-include include '../CRUD/conexion.php'; // Conexión a la base de datos
+include '../CRUD/conexion.php'; // Conexión a la base de datos
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario_id = $conn->real_escape_string($_POST['usuario_id']);

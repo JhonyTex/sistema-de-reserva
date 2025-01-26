@@ -1,5 +1,5 @@
 <?php
-include 'CRUD/conexion.php';  // Asegúrate de usar el formato correcto
+include 'conexion.php';  // Asegúrate de usar el formato correcto
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Recibir los datos del formulario
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             Hemos recibido su mensaje con éxito. ¡Gracias por contactarnos!
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="window.location.href=\'contacto.php\';">Aceptar</button>
+                            <button type="button" class="btn btn-primary" onclick="window.location.href=\'../contacto.php\';">Aceptar</button>
                         </div>
                     </div>
                 </div>

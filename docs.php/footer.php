@@ -1,6 +1,6 @@
  <!-- Pie de página -->
     <footer>
-        <p>&copy; 2024 Suite Star. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Suite Star. Todos los derechos reservados.</p>
         <nav class="footer-nav">
             <a href="privacity.php">Política de Privacidad</a> | 
             <a href="terminos.html">Términos de Uso</a>

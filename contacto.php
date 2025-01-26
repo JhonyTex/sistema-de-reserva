@@ -146,6 +146,58 @@ ini_set('display_errors', 1);
             background-color: #5b42d6;
         }
 
+        /* Seccion preguntas frecuentes */
+        
+
+        .faq-section {
+        margin-top: 40px;
+        width: 90%;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-item {
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .faq-question {
+        cursor: pointer;
+        background-color: #f8f9fa;
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .faq-question:hover {
+        background-color: #8367f7;
+        color: #fff;
+    }
+
+    .faq-answer {
+        display: none;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .faq-answer.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+
         /* Footer oculto inicialmente */
         footer {
             width: 100%;
@@ -195,6 +247,49 @@ ini_set('display_errors', 1);
 </form>
 
         </section>
+
+        <!-- Sección de preguntas frecuentes -->
+        <section class="faq-section">
+    <h2 class="text-center my-4">Preguntas Frecuentes</h2>
+    <div class="container">
+        <div class="faq-item card my-3">
+            <div class="card-header faq-question">
+                <h5>1. ¿Cómo puedo contactar al soporte?</h5>
+            </div>
+            <div class="card-body faq-answer">
+                <p>Puede enviar un mensaje desde esta misma página utilizando el formulario de contacto.</p>
+            </div>
+        </div>
+        <div class="faq-item card my-3">
+            <div class="card-header faq-question">
+                <h5>2. ¿Cuánto tiempo tarda en responder el soporte?</h5>
+            </div>
+            <div class="card-body faq-answer">
+                <p>Nuestro equipo responderá su consulta en un plazo de 24 a 48 horas hábiles.</p>
+            </div>
+        </div>
+        <div class="faq-item card my-3">
+            <div class="card-header faq-question">
+                <h5>3. ¿Qué tipo de consultas puedo realizar?</h5>
+            </div>
+            <div class="card-body faq-answer">
+                <p>Puede realizar consultas relacionadas con el uso del sistema, reportar problemas o enviar sugerencias.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    // Mostrar/ocultar respuestas a preguntas frecuentes
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const answer = question.nextElementSibling;
+            answer.classList.toggle('active');
+        });
+    });
+</script>
+
 
     
 

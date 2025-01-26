@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Crear el mensaje de simulación
         $mensaje = "Recupera tu contraseña haciendo clic en el siguiente enlace: \n";
-        $mensaje .= "http://localhost/Proyecto/Recovery/restablecer.php?token=" . $token;
+        $mensaje .= "http://localhost/sistema-de-reserva/Recovery/restablecer.php?token=" . $token;
 
         // Guardar el mensaje en un archivo de texto
         file_put_contents('correo_prueba.txt', "Para: $correo\nMensaje:\n$mensaje\n\n", FILE_APPEND);

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'CRUD/conexion.php'; // Conexión a la base de datos
+include 'conexion.php'; // Conexión a la base de datos
 
 // Verificar si el usuario está autenticado
 if (!isset($_SESSION['correo'])) {
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($conn->query($sql_update)) {
         echo "<script>
                 alert('Usuario actualizado con éxito.');
-                window.location.href = 'perfil.php';
+                window.location.href = '../perfil.php';
               </script>";
         exit;
     } else {
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
         <div class="update-container">
             <!-- Botón de regreso al perfil -->
-            <a href="perfil.php" class="btn btn-secondary btn-sm btn-back">Volver a mi perfil</a>
+            <a href="../perfil.php" class="btn btn-secondary btn-sm btn-back">Volver a mi perfil</a>
 
             <h1 class="text-center">Actualizar Usuario</h1>
             <form method="POST">

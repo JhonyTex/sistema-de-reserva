@@ -1,16 +1,5 @@
-
-Para: alejandrow7w@gmail.com
+Para: admon@gmail.com
 Mensaje:
 Recupera tu contraseña haciendo clic en el siguiente enlace: 
-http://localhost/Proyecto/Recovery/restablecer.php?token=8865310b2064e220f15452d670c11c27
-
-Para: alejandrow7w@gmail.com
-Mensaje:
-Recupera tu contraseña haciendo clic en el siguiente enlace: 
-http://localhost/Proyecto/Recovery/restablecer.php?token=f6f48c6c263febd8565634ebab8b6ebd
-
-Para: alejandrow7w@gmail.com
-Mensaje:
-Recupera tu contraseña haciendo clic en el siguiente enlace: 
-http://localhost/Proyecto/Recovery/restablecer.php?token=384c6f5c315fcb2d8cae46a881ea73b9
+http://localhost/sistema-de-reserva/Recovery/restablecer.php?token=ed26428a78e0cd2a7d178cd3e52b640f
 

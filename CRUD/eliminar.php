@@ -1,7 +1,7 @@
 <!-- Esta pagina es para eliminar usuarios -->
 <?php
 session_start();
-include 'CRUD/conexion.php'; // Conexión a la base de datos
+include 'conexion.php'; // Conexión a la base de datos
 
 // Verificar si el usuario es administrador
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] != 'administrador') {
@@ -16,7 +16,7 @@ $sql = "DELETE FROM usuarios WHERE id = $id";
 
 if ($conn->query($sql)) {
     echo "Usuario eliminado con éxito.";
-    header("Location: usuarios.php");
+    header("Location: ../usuarios.php");
     exit;
 } else {
     echo "Error al eliminar el usuario: " . $conn->error;
