@@ -19,36 +19,43 @@
 
         <div class="services-grid">
             <div class="service-card">
-                <input type="checkbox" id="service1" value="Habitación Estándar">
-                <img src="https://hotelesdann.com/dann-carlton-bogota/wp-content/uploads/sites/3/2020/08/habitacin-estndar-hotel-dann-carlton-bogot-colombia_37577235816_o.jpg" alt="Habitación Estándar" style="width:100%; border-radius: 10px 10px 0 0;">
+    
+                <img src="img/habitaciones/standar.jpg" alt="Habitación Estándar" style="width:100%; border-radius: 10px 10px 0 0;">
                 <h3>Habitación Estándar</h3>
                 <p>Disfruta de nuestra habitación estándar con todas las comodidades necesarias para una estancia placentera.</p>
             </div>
             
             <div class="service-card">
-                <input type="checkbox" id="service2" value="Habitación Deluxe">
-                <img src="https://www.lasdunashotel.com/uploads/1/1/2/9/112964637/deluxe-rooms_1_orig.jpg" alt="Habitación Deluxe" style="width:100%; border-radius: 10px 10px 0 0;">
+                <img src="img/habitaciones/Deluxe.jpg" alt="Habitación Deluxe" style="width:100%; border-radius: 10px 10px 0 0;">
                 <h3>Habitación Deluxe</h3>
                 <p>Nuestra habitación deluxe ofrece un espacio más amplio y lujoso, ideal para relajarse y descansar.</p>
             </div>
             
             <div class="service-card">
-                <input type="checkbox" id="service3" value="Suite Presidencial">
-                <img src="https://s3.amazonaws.com/static-webstudio-accorhotels-usa-1.wp-ha.fastbooking.com/wp-content/uploads/sites/19/2022/03/11175445/DUF_7063-v-ok-1170x780.jpg" alt="Suite Presidencial" style="width:100%; border-radius: 10px 10px 0 0;">
+                <img src="img/habitaciones/president.jpg" alt="Suite Presidencial" style="width:100%; border-radius: 10px 10px 0 0;">
                 <h3>Suite Presidencial</h3>
                 <p>La suite presidencial cuenta con una vista espectacular y servicios exclusivos para una experiencia inolvidable.</p>
             </div>
 
             <div class="service-card">
-                <input type="checkbox" id="service4" value="Servicios Complementarios">
-                <img src="https://hotelcongresosibiza.wordpress.com/wp-content/uploads/2010/06/piscina-exterior1.jpg" alt="Servicios Complementarios" style="width:100%; border-radius: 10px 10px 0 0;">
+                <img src="img/habitaciones/complement.jpg" alt="Servicios Complementarios" style="width:100%; border-radius: 10px 10px 0 0;">
                 <h3>Servicios Complementarios</h3>
                 <p>Ofrecemos servicio de limpieza diario, acceso a piscina, y gimnasio para todos nuestros huéspedes.</p>
             </div>
-        </div>
 
-        <!-- Botón para agregar al carrito -->
-        <button class="btn btn-primary mt-3" id="addToCartButton">Agregar al carrito</button>
+            <!-- Nuevas habitaciones añadidas -->
+            <div class="service-card">
+                <img src="img/habitaciones/junior.jpg" alt="Habitación Junior" style="width:100%; border-radius: 10px 10px 0 0;">
+                <h3>Habitación Junior</h3>
+                <p>Una habitación moderna, ideal para viajes de negocios o escapadas románticas, con una decoración elegante y funcional.</p>
+            </div>
+
+            <div class="service-card">
+                <img src="img/habitaciones/premium.jpg" alt="Habitación Premium" style="width:100%; border-radius: 10px 10px 0 0;">
+                <h3>Habitación Premium</h3>
+                <p>La habitación Premium cuenta con una decoración sofisticada, servicios exclusivos y una vista impresionante para una experiencia única.</p>
+            </div>
+        </div>
     </section>
 
     <!-- Sección de estadísticas -->
@@ -67,75 +74,8 @@
         </div>
     </div>
 
-    <!-- Carrito de compras (Modal) -->
-    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cartModalLabel">Servicios en el Carrito</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul id="cartItems" class="list-group">
-                        <!-- Los servicios seleccionados se mostrarán aquí -->
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <a href="#">
-                        <button type="button" class="btn btn-primary">Proceder al Pago</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
-
     <!-- Pie de página -->
     <?php include 'docs.php/footer.php'; ?>
 
-    
-    <script>
-        document.getElementById('addToCartButton').addEventListener('click', function() {
-            const selectedServices = [];
-            const checkboxes = document.querySelectorAll('.service-card input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    selectedServices.push(checkbox.value);
-                }
-            });
-
-            if (selectedServices.length > 0) {
-                // Mostrar el modal del carrito
-                const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
-                const cartItemsList = document.getElementById('cartItems');
-                cartItemsList.innerHTML = ''; // Limpiar la lista
-
-                selectedServices.forEach(service => {
-                    const listItem = document.createElement('li');
-                    listItem.className = 'list-group-item';
-                    listItem.textContent = service;
-                    cartItemsList.appendChild(listItem);
-                });
-
-                cartModal.show();
-            } else {
-                alert('Por favor selecciona al menos un servicio.');
-            }
-        });
-
-        // Lógica para el botón de proceder al pago
-        document.getElementById('proceedToPaymentButton').addEventListener('click', function() {
-            // Aquí puedes agregar la lógica para proceder al pago
-            alert('Procediendo al pago...');
-        });
-
-        // Lógica para el botón del carrito
-        document.getElementById('cartButton').addEventListener('click', function() {
-            const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
-            cartModal.show();
-        });
-    </script>
 </body>
 </html>

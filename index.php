@@ -49,37 +49,37 @@
         <p>Disfruta de una variedad de bebidas en nuestro bar, abierto todo el día.</p>
     </div>
     <div class="service">
-        <img src="https://jlvhomedesign.com/wp-content/uploads/2018/10/parqueaderos-1200x628.png" alt="Servicio 2">
+        <img src="img/parqueadero.png" alt="Servicio 2">
         <h4>Servicio de Parqueadero</h4>
         <p>Contamos con un amplio parqueadero seguro para nuestros huéspedes.</p>
     </div>
     <div class="service">
-        <img src="https://qualitygb.com/wp-content/uploads/2021/11/young-hotel-maid-putting-stack-of-fresh-white-bath-towels-870x440.jpg" alt="Servicio 3">
+        <img src="img/servi.jpg" alt="Servicio 3">
         <h4>Servicio de Habitaciones</h4>
         <p>Habitaciones cómodas y equipadas para garantizar su descanso.</p>
     </div>
     <div class="service">
-        <img src="https://www.unileverfoodsolutions.es/ideas-menu/especial-hoteles/room-service/tipos-de-room-service/jcr:content/parsys/content-aside-footer/image_95613707.img.jpg/1695810655513.jpg" alt="Room Service">
+        <img src="img/room.jpg" alt="Room Service">
         <h4>Room Service</h4>
         <p>Servicio a la habitación disponible las 24 horas para su comodidad.</p>
     </div>
     <div class="service">
-        <img src="https://aranwahotels.com/wp-content/uploads/2019/01/SPA-COLCA-2.jpg" alt="Servicio 5">
+        <img src="img/spa.jpg" alt="Servicio 5">
         <h4>Servicio de Spa</h4>
         <p>Relájese y disfrute de tratamientos de spa en nuestras instalaciones.</p>
     </div>
     <div class="service">
-        <img src="https://www.superprof.com.ar/blog/wp-content/uploads/2019/02/un_entrenador_personal_puede_trabajar_en_el_domicilio_del_alumno_al_aire_libre_o_en_un_gimnasio.jpg" alt="Servicio 6">
+        <img src="img/gym.jpg" alt="Servicio 6">
         <h4>Gimnasio</h4>
         <p>Manténgase en forma durante su estancia con nuestro gimnasio totalmente equipado.</p>
     </div>
     <div class="service">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCQ1odV0Y5HHxBEH_lgAY2-t3i_UX3E5WIiQ&s" alt="Servicio 7">
+        <img src="img/lavanda.jpg" alt="Servicio 7">
         <h4>Servicio de Lavandería</h4>
         <p>Ofrecemos servicio de lavandería para su conveniencia.</p>
     </div>
     <div class="service">
-        <img src=https://st3.depositphotos.com/4385731/19406/i/450/depositphotos_194068810-stock-photo-full-breakfast-table-coffee-juice.jpg alt="Servicio 8">
+        <img src="img/desay.jpg" alt="Servicio 8">
         <h4>Desayuno Incluido</h4>
         <p>Disfrute de un delicioso desayuno incluido en su estadía.</p>
     </div>
