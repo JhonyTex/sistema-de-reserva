@@ -17,6 +17,19 @@
 <!-- Contenedor de registro de usuario -->
 <div class="register-container">
     <h2>Registro de Usuario</h2>
+    
+    <!-- Mostrar mensaje de éxito si el parámetro "registro" está presente en la URL -->
+    <?php
+    if (isset($_GET['registro']) && $_GET['registro'] == 'exitoso') {
+        echo '<div class="alert alert-success" role="alert">¡Registro exitoso! Puedes iniciar sesión ahora.</div>';
+    }
+    
+    // Mostrar advertencia si el correo ya está registrado
+    if (isset($_GET['error']) && $_GET['error'] == 'correo_existente') {
+        echo '<div class="alert alert-danger" role="alert">Este correo ya está registrado. Por favor, usa otro correo electrónico.</div>';
+    }
+    ?>
+
     <form action="CRUD/registrar.php" method="POST"> 
         <select class="form-select" name="tipo_usuario" required>
             <option value="" disabled selected>Seleccione Tipo de Usuario</option>
@@ -36,5 +49,16 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+<script>
+// Si el mensaje de éxito está presente, redirigir después de 5 segundos
+<?php
+if (isset($_GET['registro']) && $_GET['registro'] == 'exitoso') {
+    echo 'setTimeout(function() { window.location.href = "ingresar.php"; }, 5000);';
+}
+?>
+
+</script>
+
 </body>
 </html>

@@ -11,6 +11,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $apellido = $_POST['apellido'];
     $contrasena = password_hash($_POST['contrasena'], PASSWORD_BCRYPT); // Hashear la contraseña
 
+    // Verificar si el correo ya existe en la base de datos
+    $sql_check_email = "SELECT id FROM usuarios WHERE correo = '$correo'";
+    $result_email = $conn->query($sql_check_email);
+
+    // Si ya existe el correo, redirigir con un mensaje de error
+    if ($result_email->num_rows > 0) {
+        header("Location: ../registro.php?error=correo_existente");
+        exit;
+    }
+
     // Obtener el ID del rol a partir de la descripción del tipo de usuario
     $sql_rol = "SELECT id FROM roles WHERE descripcion = '$tipo_usuario'";
     $result_rol = $conn->query($sql_rol);
@@ -24,9 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
-            echo "Usuario registrado correctamente.";
-            header("Location: ../ingresar.php"); // Redirigir al formulario de ingreso
+            // Redirigir a la página de registro con un parámetro de éxito
+            header("Location: ../registro.php?registro=exitoso");
+            exit;
         } else {
+            // Si ocurre un error, mostrarlo en la consola
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     } else {
