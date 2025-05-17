@@ -72,7 +72,6 @@ $mensaje = isset($_GET['mensaje']) ? $_GET['mensaje'] : '';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Historial de Reservas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container mt-4">
@@ -104,48 +103,50 @@ $mensaje = isset($_GET['mensaje']) ? $_GET['mensaje'] : '';
         <?php endif; ?>
 
         <?php if ($resultado && $resultado->num_rows > 0): ?>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <?php if ($tipo_usuario === 'administrador'): ?>
-                            <th>Usuario</th>
-                        <?php endif; ?>
-                        <th>Fecha de Reserva</th>
-                        <th>Fecha de Ingreso</th>
-                        <th>Fecha de Salida</th>
-                        <th>Cantidad de Personas</th>
-                        <th>Tipo de Habitación</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($reserva = $resultado->fetch_assoc()): ?>
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
                         <tr>
                             <?php if ($tipo_usuario === 'administrador'): ?>
-                                <td><?= htmlspecialchars($reserva['nombre'] . ' ' . $reserva['apellido']) ?></td>
+                                <th>Usuario</th>
                             <?php endif; ?>
-                            <td><?= htmlspecialchars($reserva['fecha_reserva']) ?></td>
-                            <td><?= htmlspecialchars($reserva['fecha_ingreso']) ?></td>
-                            <td><?= htmlspecialchars($reserva['fecha_salida']) ?></td>
-                            <td><?= (int)$reserva['cantidad_personas'] ?></td>
-                            <td><?= htmlspecialchars(ucfirst($reserva['tipo_habitacion'])) ?></td>
-                            <td><?= htmlspecialchars(ucfirst($reserva['estado'])) ?></td>
-                            <td>
-                                <?php if ($reserva['estado'] === 'confirmada'): ?>
-                                    <a href="cancelar_reserva.php?id=<?= (int)$reserva['id'] ?>" class="btn btn-warning btn-sm">Cancelar</a>
-                                <?php elseif ($reserva['estado'] === 'pendiente' && $tipo_usuario === 'administrador'): ?>
-                                    <a href="aprobar_reserva.php?id=<?= (int)$reserva['id'] ?>" class="btn btn-success btn-sm">Aprobar</a>
-                                    <a href="cancelar_reserva.php?id=<?= (int)$reserva['id'] ?>" class="btn btn-warning btn-sm">Cancelar</a>
-                                <?php endif; ?>
-                                <?php if ($reserva['estado'] !== 'eliminada'): ?>
-                                    <a href="eliminar_reserva.php?id=<?= (int)$reserva['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar esta reserva?')">Eliminar</a>
-                                <?php endif; ?>
-                            </td>
+                            <th>Fecha de Reserva</th>
+                            <th>Fecha de Ingreso</th>
+                            <th>Fecha de Salida</th>
+                            <th>Cantidad de Personas</th>
+                            <th>Tipo de Habitación</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php while ($reserva = $resultado->fetch_assoc()): ?>
+                            <tr>
+                                <?php if ($tipo_usuario === 'administrador'): ?>
+                                    <td><?= htmlspecialchars($reserva['nombre'] . ' ' . $reserva['apellido']) ?></td>
+                                <?php endif; ?>
+                                <td><?= htmlspecialchars($reserva['fecha_reserva']) ?></td>
+                                <td><?= htmlspecialchars($reserva['fecha_ingreso']) ?></td>
+                                <td><?= htmlspecialchars($reserva['fecha_salida']) ?></td>
+                                <td><?= (int)$reserva['cantidad_personas'] ?></td>
+                                <td><?= htmlspecialchars(ucfirst($reserva['tipo_habitacion'])) ?></td>
+                                <td><?= htmlspecialchars(ucfirst($reserva['estado'])) ?></td>
+                                <td>
+                                    <?php if ($reserva['estado'] === 'confirmada'): ?>
+                                        <a href="cancelar_reserva.php?id=<?= (int)$reserva['id'] ?>" class="btn btn-warning btn-sm">Cancelar</a>
+                                    <?php elseif ($reserva['estado'] === 'pendiente' && $tipo_usuario === 'administrador'): ?>
+                                        <a href="aprobar_reserva.php?id=<?= (int)$reserva['id'] ?>" class="btn btn-success btn-sm">Aprobar</a>
+                                        <a href="cancelar_reserva.php?id=<?= (int)$reserva['id'] ?>" class="btn btn-warning btn-sm">Cancelar</a>
+                                    <?php endif; ?>
+                                    <?php if ($reserva['estado'] !== 'eliminada'): ?>
+                                        <a href="eliminar_reserva.php?id=<?= (int)$reserva['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar esta reserva?')">Eliminar</a>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
         <?php else: ?>
             <p>No hay reservas para mostrar.</p>
         <?php endif; ?>

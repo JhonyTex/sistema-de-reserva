@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-05-2025 a las 16:54:55
+-- Tiempo de generación: 18-05-2025 a las 00:56:46
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -63,8 +63,8 @@ CREATE TABLE `contactos` (
 --
 
 INSERT INTO `contactos` (`id`, `nombre`, `correo`, `motivo_id`, `mensaje`, `fecha`, `fecha_envio`) VALUES
-(1, 'Juan Pérez', 'juan@example.com', 1, 'Tengo una consulta sobre la disponibilidad de habitaciones.', '2024-11-28 17:12:56', '2024-11-28 17:12:56'),
-(3, 'Abel', 'abelAngel@gmail.com', 3, 'Excelente servicios', '2025-04-24 01:22:13', '2025-04-23 20:22:13');
+(4, 'Arnol', 'Arnol@gmail.com', 4, '¿Puedo cancelar una reserva?', '2025-05-17 22:07:17', '2025-05-17 17:07:17'),
+(5, 'Arnol', 'Arnol@gmail.com', 4, 'Necesito ayuda', '2025-05-17 22:21:31', '2025-05-17 17:21:31');
 
 -- --------------------------------------------------------
 
@@ -100,12 +100,107 @@ CREATE TABLE `recuperacion_password` (
   `expira` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `recuperacion_password`
+-- Estructura de tabla para la tabla `reservas`
 --
 
-INSERT INTO `recuperacion_password` (`id`, `usuario_id`, `token`, `expira`) VALUES
-(8, 6, '384c6f5c315fcb2d8cae46a881ea73b9', '2024-11-29 04:49:06');
+CREATE TABLE `reservas` (
+  `id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `fecha_reserva` timestamp NOT NULL DEFAULT current_timestamp(),
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `correo` varchar(100) NOT NULL,
+  `fecha_ingreso` date NOT NULL,
+  `fecha_salida` date NOT NULL,
+  `cantidad_personas` int(3) NOT NULL,
+  `tipo_habitacion` varchar(50) NOT NULL,
+  `estado` varchar(20) NOT NULL DEFAULT 'pendiente',
+  `telefono` varchar(20) NOT NULL,
+  `preferencias_especiales` text DEFAULT NULL,
+  `metodo_pago` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `reservas`
+--
+
+INSERT INTO `reservas` (`id`, `usuario_id`, `fecha_reserva`, `nombre`, `apellido`, `correo`, `fecha_ingreso`, `fecha_salida`, `cantidad_personas`, `tipo_habitacion`, `estado`, `telefono`, `preferencias_especiales`, `metodo_pago`) VALUES
+(1, 16, '2025-05-17 22:03:39', 'Arnol', 'v', 'Arnol@gmail.com', '2025-05-17', '2025-05-20', 3, 'estandar', 'pendiente', '3195378456', 'Hola', 'tarjeta_credito');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `respuestas_contactos`
+--
+
+CREATE TABLE `respuestas_contactos` (
+  `id` int(11) NOT NULL,
+  `contacto_id` int(11) NOT NULL,
+  `admin_id` int(11) DEFAULT NULL,
+  `respuesta` text NOT NULL,
+  `fecha_respuesta` datetime NOT NULL DEFAULT current_timestamp(),
+  `calificacion_usuario` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `respuestas_contactos`
+--
+
+INSERT INTO `respuestas_contactos` (`id`, `contacto_id`, `admin_id`, `respuesta`, `fecha_respuesta`, `calificacion_usuario`) VALUES
+(2, 4, 6, 'Si, señor. Digame si la desea cancelar, le puedo colaborar', '2025-05-17 17:08:23', NULL),
+(3, 5, 6, 'Cuenteme señor que le ocurre', '2025-05-17 17:48:53', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `respuestas_usuario`
+--
+
+CREATE TABLE `respuestas_usuario` (
+  `id` int(11) NOT NULL,
+  `contacto_id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `respuesta` text NOT NULL,
+  `fecha_respuesta` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `respuestas_usuario`
+--
+
+INSERT INTO `respuestas_usuario` (`id`, `contacto_id`, `usuario_id`, `respuesta`, `fecha_respuesta`) VALUES
+(1, 5, 16, 'Hola', '2025-05-17 17:39:00'),
+(2, 5, 16, 'Hola, no me responde', '2025-05-17 17:45:17'),
+(3, 5, 16, 'holaaaa', '2025-05-17 17:55:01');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `respuestas_usuario_admin`
+--
+
+CREATE TABLE `respuestas_usuario_admin` (
+  `id` int(11) NOT NULL,
+  `respuesta_usuario_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL,
+  `respuesta` text NOT NULL,
+  `fecha_respuesta` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `respuestas_usuario_admin`
+--
+
+INSERT INTO `respuestas_usuario_admin` (`id`, `respuesta_usuario_id`, `admin_id`, `respuesta`, `fecha_respuesta`) VALUES
+(1, 1, 6, 'Hola, cuenteme', '2025-05-17 17:44:27'),
+(2, 2, 6, 'Hola si', '2025-05-17 17:45:39'),
+(3, 2, 6, 'Si, hola', '2025-05-17 17:48:43'),
+(4, 1, 6, 'Hola, esta es la prueba 1', '2025-05-17 17:50:33'),
+(5, 1, 6, 'Si, hola prueba 2', '2025-05-17 17:54:07'),
+(6, 3, 6, 'hola, si', '2025-05-17 17:55:31');
 
 -- --------------------------------------------------------
 
@@ -152,13 +247,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `rol_id`, `correo`, `cedula`, `nombre`, `apellido`, `contrasena`, `fecha_registro`, `imagen_perfil`, `descripcion`, `fecha_nacimiento`) VALUES
-(6, 1, 'alejandrow7w@gmail.com', '102030', 'Jhony p', 'Vasquez', '$2y$10$IiAbTm54bjd7NnGjHgX7yumF1vfH7zePTzOG99yjs9ehPXmuPm3c6', '2024-11-28 17:12:56', '6_profile.jpg', 'hola', '2024-11-20'),
-(8, 1, 'angelVega@gmail.com', '10394', 'Angel', 'Vega', '$2y$10$kmb.EKsOhRzBwRL4mOU3..LRtxp0mWE72DR9K3F5d3hUHQJ1.he8S', '2025-04-24 01:23:09', NULL, NULL, NULL),
-(9, 3, 'marcel23vega@gmail.com', '3048', 'marcel', 'vega', '$2y$10$z12kehuACeUg6LLzT8osWebH9TRETuprkDztovAo7wMCixBPoNRSi', '2025-04-24 02:59:36', NULL, NULL, NULL),
-(10, 3, 'selenio@gmail.com', '1000890', 'Selenio', 'Selenium', '$2y$10$u3zDZmutvwjh/N83bNqfv.Z.hZlO12IsBeioDMvPQE4s7bUnSCs3y', '2025-04-24 16:47:57', NULL, NULL, NULL),
-(12, 1, 'admin@gmail.com', '133', 'Admin', 'Ale', '$2y$10$yRk3ovjNcYCUzOcixd73ueOJ/XdY8XrirB7Yqw2/m.pHh2O/l5T5y', '2025-05-14 04:15:10', NULL, NULL, NULL),
-(13, 1, 'ejemplo@gmail.com', '3445', 'Hola', 'V', '$2y$10$/n7ymxBfr9Kq5h3DMhuwTe9z8luA6Dcpsi4TO9rolleob2hIQVqTC', '2025-05-14 14:19:15', NULL, NULL, NULL),
-(14, 1, 'a@gmail.com', '2344', 'J', 'A', '$2y$10$0gL6rHF5l1uddWjwYKWpzetNWmRhFljwYldSJ.KubKo/lG4Xc4jgy', '2025-05-14 14:24:17', NULL, NULL, NULL);
+(6, 1, 'admin1@gmail.com', '102030', 'Admin', '1', '$2y$10$QdwVR0W8dncYVnY41WJua.yJ.4h5mrNpn0l1XH1pjOYja2O2kMnyy', '2024-11-28 17:12:56', '6_admin1.png', 'Administrador principal', '2000-11-20'),
+(16, 3, 'Arnol@gmail.com', '1025645', 'Arnol', 'Zack', '$2y$10$VDQVlxHkxeHl8IBr/oUVJek00Q/ffaUQiagAtN2ciw4dIN5C9Xx7S', '2025-05-17 18:44:01', '16_avatar1.jpg', NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -192,6 +282,37 @@ ALTER TABLE `recuperacion_password`
   ADD KEY `usuario_id` (`usuario_id`);
 
 --
+-- Indices de la tabla `reservas`
+--
+ALTER TABLE `reservas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_id` (`usuario_id`);
+
+--
+-- Indices de la tabla `respuestas_contactos`
+--
+ALTER TABLE `respuestas_contactos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `contacto_id` (`contacto_id`),
+  ADD KEY `admin_id` (`admin_id`);
+
+--
+-- Indices de la tabla `respuestas_usuario`
+--
+ALTER TABLE `respuestas_usuario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `contacto_id` (`contacto_id`),
+  ADD KEY `usuario_id` (`usuario_id`);
+
+--
+-- Indices de la tabla `respuestas_usuario_admin`
+--
+ALTER TABLE `respuestas_usuario_admin`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `respuesta_usuario_id` (`respuesta_usuario_id`),
+  ADD KEY `admin_id` (`admin_id`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -220,7 +341,7 @@ ALTER TABLE `boletin`
 -- AUTO_INCREMENT de la tabla `contactos`
 --
 ALTER TABLE `contactos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `motivos`
@@ -232,7 +353,31 @@ ALTER TABLE `motivos`
 -- AUTO_INCREMENT de la tabla `recuperacion_password`
 --
 ALTER TABLE `recuperacion_password`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `reservas`
+--
+ALTER TABLE `reservas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `respuestas_contactos`
+--
+ALTER TABLE `respuestas_contactos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `respuestas_usuario`
+--
+ALTER TABLE `respuestas_usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `respuestas_usuario_admin`
+--
+ALTER TABLE `respuestas_usuario_admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -244,7 +389,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas
@@ -261,6 +406,33 @@ ALTER TABLE `contactos`
 --
 ALTER TABLE `recuperacion_password`
   ADD CONSTRAINT `recuperacion_password_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
+
+--
+-- Filtros para la tabla `reservas`
+--
+ALTER TABLE `reservas`
+  ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `respuestas_contactos`
+--
+ALTER TABLE `respuestas_contactos`
+  ADD CONSTRAINT `respuestas_contactos_ibfk_1` FOREIGN KEY (`contacto_id`) REFERENCES `contactos` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `respuestas_contactos_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL;
+
+--
+-- Filtros para la tabla `respuestas_usuario`
+--
+ALTER TABLE `respuestas_usuario`
+  ADD CONSTRAINT `respuestas_usuario_ibfk_1` FOREIGN KEY (`contacto_id`) REFERENCES `contactos` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `respuestas_usuario_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `respuestas_usuario_admin`
+--
+ALTER TABLE `respuestas_usuario_admin`
+  ADD CONSTRAINT `respuestas_usuario_admin_ibfk_1` FOREIGN KEY (`respuesta_usuario_id`) REFERENCES `respuestas_usuario` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `respuestas_usuario_admin_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
