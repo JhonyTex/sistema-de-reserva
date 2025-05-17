@@ -100,7 +100,7 @@
       <select class="form-select" name="tipo_usuario" required>
         <option value="" disabled selected>Seleccione Tipo de Usuario</option>
         <option value="administrador">Administrador</option>
-        <option value="recepcionista">Recepcionista</option>
+        <!-- <option value="recepcionista">Recepcionista</option> -->
         <option value="cliente">Cliente</option>
       </select>
       <input type="email" class="form-control" name="correo" placeholder="Correo Electrónico" required />

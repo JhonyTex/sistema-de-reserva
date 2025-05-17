@@ -1,5 +1,7 @@
-Para: admon@gmail.com
+
+
+Para: alejandrow7w@gmail.com
 Mensaje:
 Recupera tu contraseña haciendo clic en el siguiente enlace: 
-http://localhost/sistema-de-reserva/Recovery/restablecer.php?token=ed26428a78e0cd2a7d178cd3e52b640f
+http://localhost/sistema-de-reserva/Recovery/restablecer.php?token=b6781b33d4662afcc234932c52c82cfd
 
