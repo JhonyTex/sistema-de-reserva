@@ -1,11 +1,12 @@
 <?php
 session_start();
-include 'CRUD/conexion.php';
+include '../CRUD/conexion.php';
 
 $motivoFiltro = $_POST['motivo_filtro'] ?? '';
 $fechaFiltro = $_POST['fecha_filtro'] ?? '';
 $usuario_correo = $_SESSION['correo'] ?? '';
 
+// Consulta principal para obtener mensajes del usuario
 $sql = "SELECT c.*, m.descripcion AS motivo, rc.respuesta, rc.calificacion_usuario,
         u.nombre AS admin_nombre, u.apellido AS admin_apellido
         FROM contactos c
@@ -30,6 +31,32 @@ if (!$resultado) {
     echo "Error en la consulta: " . $conn->error;
     exit;
 }
+
+// Buscar respuestas automáticas para cada mensaje del usuario
+$respuestas_automaticas = [];
+if ($resultado->num_rows > 0) {
+    while ($fila = $resultado->fetch_assoc()) {
+        $motivo = $conn->real_escape_string($fila['motivo']);
+        $mensaje = strtolower($fila['mensaje']);
+
+        // Buscar coincidencia en palabra_clave para el motivo correspondiente
+        $sql_auto = "SELECT palabra_clave, respuesta FROM respuestas_automaticas WHERE motivo = '$motivo'";
+        $res_auto = $conn->query($sql_auto);
+
+        $respuesta_automatica = null;
+        if ($res_auto && $res_auto->num_rows > 0) {
+            while ($row_auto = $res_auto->fetch_assoc()) {
+                if (strpos($mensaje, strtolower($row_auto['palabra_clave'])) !== false) {
+                    $respuesta_automatica = $row_auto['respuesta'];
+                    break;
+                }
+            }
+        }
+        $respuestas_automaticas[$fila['id']] = $respuesta_automatica;
+    }
+    // Reposicionar cursor para mostrar mensajes
+    $resultado->data_seek(0);
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +64,7 @@ if (!$resultado) {
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Chats Separados - Mis Mensajes y Respuestas</title>
+<title>Mis Mensajes y Respuestas</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 <style>
     body {
@@ -97,6 +124,8 @@ if (!$resultado) {
     }
 </style>
 </head>
+
+<?php include '../docs/iconito.php'; ?>
 <body>
 
 <div class="container-accordion">
@@ -149,9 +178,17 @@ if (!$resultado) {
                                 </div>
                             </div>
                         <?php else: ?>
-                            <div class="chat-message admin-message" style="font-style: italic; color: #777;">
-                                No hay respuesta aún.
-                            </div>
+                            <!-- Mostrar respuesta automática si existe -->
+                            <?php if (!empty($respuestas_automaticas[$fila['id']])): ?>
+                                <div class="chat-message admin-message" style="font-style: italic; color: #007bff;">
+                                    <?= nl2br(htmlspecialchars($respuestas_automaticas[$fila['id']])) ?>
+                                    <div class="chat-info"><em>Respuesta automática</em></div>
+                                </div>
+                            <?php else: ?>
+                                <div class="chat-message admin-message" style="font-style: italic; color: #777;">
+                                    No hay respuesta aún.
+                                </div>
+                            <?php endif; ?>
                         <?php endif; ?>
 
                         <!-- Respuestas adicionales de usuario y respuestas del admin -->
@@ -216,7 +253,7 @@ if (!$resultado) {
 
 </div>
 
-<a href="perfil.php" class="btn btn-secondary btn-back" style="max-width:700px; margin:20px auto; display:block;">← Volver al Perfil</a>
+<a href="../perfil.php" class="btn btn-secondary btn-back" style="max-width:700px; margin:20px auto; display:block;">← Volver al Perfil</a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

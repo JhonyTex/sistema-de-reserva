@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ingresar.php");
+    header("Location: ../ingresar.php");
     exit;
 }
 
-include 'CRUD/conexion.php';
+include '../CRUD/conexion.php';
 
 $usuario_id = (int)$_SESSION['usuario_id'];
 
@@ -77,7 +77,7 @@ $mensaje = isset($_GET['mensaje']) ? $_GET['mensaje'] : '';
     <div class="container mt-4">
         <h1>Historial de Reservas</h1>
 
-        <a href="perfil.php" class="btn btn-secondary mb-3">
+        <a href="../perfil.php" class="btn btn-secondary mb-3">
             <i class="fas fa-arrow-left"></i> Volver a mi Perfil
         </a>
 

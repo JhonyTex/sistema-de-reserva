@@ -1,9 +1,9 @@
 <?php
 session_start();
-include 'CRUD/conexion.php';
+include '../CRUD/conexion.php';
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ingresar.php");
+    header("Location: ../ingresar.php");
     exit;
 }
 

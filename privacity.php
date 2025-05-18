@@ -12,7 +12,7 @@
 <body>
     <!-- menu de nav -->
 
-    <?php include 'docs.php/header2.php'; ?>
+    <?php include 'docs/header2.php'; ?>
 
     <!-- Sección de Políticas de Privacidad -->
     <div class="privacy-policy">
@@ -59,7 +59,7 @@
     </div>
 
     <!-- Pie de página -->
-    <?php include 'docs.php/footer.php'; ?>
+    <?php include 'docs/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -1,9 +1,9 @@
 <?php
 session_start();
-include 'CRUD/conexion.php';
+include '../CRUD/conexion.php';
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== 'administrador') {
-    header("Location: ingresar.php");
+    header("Location: ../ingresar.php");
     exit;
 }
 
@@ -89,6 +89,7 @@ $result_historial = $stmt_hist->get_result();
     <title>Responder a Respuesta del Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
+<?php include '../docs/iconito.php'; ?>
 <body>
 <div class="container mt-5">
     <h2>Responder a Respuesta del Usuario</h2>

@@ -148,21 +148,21 @@ $es_cumpleaños = ($hoy === $fecha_nacimiento);
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="historial_reservas.php"><i class="fas fa-history"></i> Historial de Reservas</a>
+          <a class="nav-link" href="Reserva/historial_reservas.php"><i class="fas fa-history"></i> Historial de Reservas</a>
         </li>
         <?php if ($usuario['tipo_usuario'] === 'administrador'): ?>
         <li class="nav-item">
           <a class="nav-link" href="usuarios.php"><i class="fas fa-users-cog"></i> Administrar Usuarios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="ver_contactos.php"><i class="fas fa-envelope"></i> Ver Mensajes</a>
+          <a class="nav-link" href="Contacto/ver_contactos.php"><i class="fas fa-envelope"></i> Ver Mensajes</a>
         </li>
         <?php endif; ?>
       </ul>
 
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a href="ver_respuestas.php" class="nav-link btn btn-info text-white px-3 me-3" style="border-radius: 5px;">
+          <a href="Contacto/ver_respuestas.php" class="nav-link btn btn-info text-white px-3 me-3" style="border-radius: 5px;">
             <i class="fas fa-envelope-open-text"></i> Ver Mis Mensajes y Respuestas
           </a>
         </li>

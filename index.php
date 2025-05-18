@@ -11,7 +11,7 @@
 </head>
 <body>
 
-   <?php include 'docs.php/header2.php';?>
+   <?php include 'docs/header2.php';?>
 
     <!-- Banner de Imágenes (Carrusel) -->
     <div id="banner" class="carousel slide" data-bs-ride="carousel">
@@ -23,22 +23,18 @@
                     <p>Un lugar de confort y lujo.</p>
                 </div>
             </div>
-            <!-- <div class="carousel-item">
-                <img src="https://www.piscinasferromar.com/blog/wp-content/uploads/2022/09/agua-piscina.jpg" class="d-block w-100" alt="Imagen 2" width="511">
-                <div class="carousel-caption">
-                    <h5>Relájate en nuestra piscina</h5>
-                    <p>Un lugar ideal para descansar.</p>
-                </div>
-            </div> -->
+            <!-- Puedes añadir más imágenes aquí si lo deseas -->
         </div>
-        <!-- <button class="carousel-control-prev" type="button" data-bs-target="#banner" data-bs-slide="prev">
+        <!-- Opcional: controles del carrusel
+        <button class="carousel-control-prev" type="button" data-bs-target="#banner" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Anterior</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#banner" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Siguiente</span>
-        </button> -->
+        </button>
+        -->
     </div>
 
     <!-- Sección de servicios -->
@@ -85,8 +81,70 @@
     </div>
 </section>
 
-<?php include 'docs.php/footer.php'; ?>
-   
-    
+<!-- Sección de Novedades y Eventos -->
+<section class="news-section container py-5">
+    <h3 class="text-center mb-4" style="color:#4a3cbc; font-weight:700;">Novedades y Eventos</h3>
+    <div class="row g-4">
+        <article class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="img/jazz.jpeg" class="card-img-top" alt="Evento de Jazz en Suite Star" />
+                <div class="card-body">
+                    <h5 class="card-title">Noche de Jazz en Vivo</h5>
+                    <p class="card-text">Disfruta de una velada especial con música jazz en nuestro lounge el próximo viernes 24 de mayo.</p>
+                    <small class="text-muted">Publicado: 12 de mayo 2025</small>
+                </div>
+            </div>
+        </article>
+        <article class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="img/luxe.jpg" class="card-img-top" alt="Renovación de habitaciones" />
+                <div class="card-body">
+                    <h5 class="card-title">Renovación de Habitaciones Deluxe</h5>
+                    <p class="card-text">Hemos renovado completamente nuestras habitaciones Deluxe para brindarte mayor comodidad y estilo.</p>
+                    <small class="text-muted">Publicado: 1 de mayo 2025</small>
+                </div>
+            </div>
+        </article>
+        <article class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="img/spaP.jpg" class="card-img-top" alt="Promoción de Spa" />
+                <div class="card-body">
+                    <h5 class="card-title">Promoción Especial Spa</h5>
+                    <p class="card-text">Este mes disfruta un 20% de descuento en todos nuestros tratamientos de spa.</p>
+                    <small class="text-muted">Publicado: 5 de mayo 2025</small>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<?php include 'docs/footer.php'; ?>
+
+<style>
+    .news-section h3 {
+        color: #4a3cbc;
+    }
+    .news-section .card {
+        border-radius: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .news-section .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .news-section .card-img-top {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        height: 180px;
+        object-fit: cover;
+    }
+    .news-section .card-body {
+        color: #333;
+    }
+    .news-section small.text-muted {
+        font-size: 0.8rem;
+    }
+</style>
+
 </body>
 </html>

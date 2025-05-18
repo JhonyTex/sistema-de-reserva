@@ -100,7 +100,7 @@
 <body>
 
   <!-- Menu de nav -->
-  <?php include 'docs.php/header2.php'; ?>
+  <?php include 'docs/header2.php'; ?>
 
   <!-- Contenedor de registro de usuario -->
   <div class="register-container">

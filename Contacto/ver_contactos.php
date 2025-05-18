@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'CRUD/conexion.php';
+include '../CRUD/conexion.php';
 
 // Cargar tipo_usuario en sesión si no está definido
 if (!isset($_SESSION['tipo_usuario']) && isset($_SESSION['usuario_id'])) {
@@ -55,6 +55,7 @@ if (!$resultado) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <?php include '../docs/iconito.php'; ?>
     <meta charset="UTF-8" />
     <title>Chats de Mensajes - Vista Administrador</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -178,7 +179,7 @@ if (!$resultado) {
                             <!-- Mensaje original usuario -->
                             <div class="chat-message user-message">
                                 <?= nl2br(htmlspecialchars($fila['mensaje'])) ?>
-                                <div class="chat-info"><?= date("d/m/Y H:i", strtotime($fila['fecha_envio'])) ?></div>
+                                <div class="chat-info"><?= htmlspecialchars($fila['nombre'] ) ?> - <?= date("d/m/Y H:i", strtotime($fila['fecha_envio'])) ?></div>
                             </div>
 
                             <!-- Respuesta admin -->
@@ -252,7 +253,7 @@ if (!$resultado) {
         </div>
     </form>
 
-    <a href="perfil.php" class="btn btn-secondary btn-back mt-3" style="max-width:900px; margin:20px auto; display:block;">← Volver al Perfil</a>
+    <a href="../perfil.php" class="btn btn-secondary btn-back mt-3" style="max-width:900px; margin:20px auto; display:block;">← Volver al Perfil</a>
 </div>
 
 <script>

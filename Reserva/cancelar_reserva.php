@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
-include 'CRUD/conexion.php';
+include '../CRUD/conexion.php';
 
 $usuario_id = (int)$_SESSION['usuario_id'];
 

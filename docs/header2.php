@@ -1,5 +1,9 @@
 <?php
 session_start();
+include __DIR__ . '/../CRUD/conexion.php';
+
+// Define la base del proyecto para usar rutas absolutas
+$base_url = '/sistema-de-reserva';
 ?>
 
 <header class="header">
@@ -13,20 +17,16 @@ session_start();
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.php"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="quienessomos.php"><i class="fas fa-users"></i> Quiénes Somos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="servicios.php"><i class="fas fa-concierge-bell"></i> Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contacto.php"><i class="fas fa-envelope"></i> Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= $base_url ?>/index.php"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= $base_url ?>/quienessomos.php"><i class="fas fa-users"></i> Quiénes Somos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= $base_url ?>/Reserva/servicios.php"><i class="fas fa-concierge-bell"></i> Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= $base_url ?>/contacto.php"><i class="fas fa-envelope"></i> Contacto</a></li>
 
                     <?php if (!isset($_SESSION['usuario_id'])): ?>
-                        <!-- Si no está logueado, mostrar botones de iniciar sesión y registrarse -->
-                        <li class="nav-item"><a class="nav-link" href="ingresar.php"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a></li>
-                        <li class="nav-item"><a class="nav-link" href="registro.php"><i class="fas fa-user-plus"></i> Crear Cuenta</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?= $base_url ?>/ingresar.php"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?= $base_url ?>/registro.php"><i class="fas fa-user-plus"></i> Crear Cuenta</a></li>
                     <?php else: ?>
-                        <!-- Si está logueado, mostrar nombre y foto de perfil -->
                         <?php
-                            // Obtener los datos del usuario
-                            include 'CRUD/conexion.php';
                             $usuario_id = $_SESSION['usuario_id'];
                             $sql = "SELECT nombre, apellido, imagen_perfil FROM usuarios WHERE id = '$usuario_id'";
                             $resultado = $conn->query($sql);
@@ -34,15 +34,14 @@ session_start();
                         ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="uploads/<?php echo $usuario['imagen_perfil'] ?? 'default-avatar.png'; ?>" alt="Perfil" class="rounded-circle" width="30" height="30"> <?php echo $usuario['nombre']; ?>
+                                <img src="<?= $base_url ?>/uploads/<?php echo $usuario['imagen_perfil'] ?? 'default-avatar.png'; ?>" alt="Perfil" class="rounded-circle" width="30" height="30"> <?php echo $usuario['nombre']; ?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="perfil.php">Mi Perfil</a></li>
-                                <li><a class="dropdown-item" href="logout.php">Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item" href="<?= $base_url ?>/perfil.php">Mi Perfil</a></li>
+                                <li><a class="dropdown-item" href="<?= $base_url ?>/logout.php">Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     <?php endif; ?>
-
                 </ul>
             </div>
         </div>

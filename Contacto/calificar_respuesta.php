@@ -1,9 +1,9 @@
 <?php
 session_start();
-include 'CRUD/conexion.php';
+include('../CRUD/conexion.php');
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ingresar.php");
+    header("Location: ../ingresar.php");
     exit;
 }
 
@@ -53,6 +53,7 @@ $calificacion_usuario = intval($fila['calificacion_usuario'] ?? 0);
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <?php include '../docs/iconito.php'; ?>
 <meta charset="UTF-8" />
 <title>Calificar Respuesta</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />

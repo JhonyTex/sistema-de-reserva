@@ -1,5 +1,15 @@
 <?php
 session_start();
+
+// Mensaje de feedback después de procesar la reserva (viene de procesar_reserva.php)
+$mensaje = '';
+$mensaje_tipo = '';
+
+if (isset($_SESSION['reserva_mensaje'])) {
+    $mensaje = $_SESSION['reserva_mensaje'];
+    $mensaje_tipo = $_SESSION['reserva_tipo']; // 'success' o 'danger'
+    unset($_SESSION['reserva_mensaje'], $_SESSION['reserva_tipo']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +30,7 @@ session_start();
   />
 
   <style>
+    /* (Tu CSS existente aquí) */
     /* Asegura header y footer visibles */
     header,
     footer {
@@ -76,6 +87,9 @@ session_start();
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .service-card:hover {
       transform: translateY(-5px);
@@ -93,6 +107,14 @@ session_start();
     .service-card p {
       padding: 0 1rem 1rem;
       font-size: 0.95rem;
+      flex-grow: 1;
+    }
+    .service-card .price {
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0 1rem 1rem;
+      color: #007bff;
+      text-align: right;
     }
 
     /* Sección reserva y estadísticas normales */
@@ -147,6 +169,8 @@ session_start();
       border-radius: 12px;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
       color: #000;
+      position: relative;
+      z-index: 1;
     }
 
     .reservation-form .form-label {
@@ -186,11 +210,27 @@ session_start();
         margin-bottom: 1rem;
       }
     }
+
+    /* Estilo para alertas */
+    .alert-position {
+      max-width: 900px;
+      margin: 1rem auto;
+      position: relative;
+      z-index: 10;
+    }
   </style>
 </head>
 <body>
   <!-- Header -->
-  <?php include 'docs.php/header2.php'; ?>
+  <?php include '../docs/header2.php'; ?>
+
+  <!-- Mensaje de estado de reserva -->
+  <?php if ($mensaje): ?>
+    <div class="alert alert-<?= htmlspecialchars($mensaje_tipo) ?> alert-dismissible fade show alert-position" role="alert">
+      <?= htmlspecialchars($mensaje) ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+  <?php endif; ?>
 
   <!-- Sección de servicios con fondo -->
   <section class="services-section">
@@ -198,34 +238,37 @@ session_start();
 
     <div class="services-grid">
       <div class="service-card">
-        <img src="img/habitaciones/standar.jpg" alt="Habitación Estándar" />
+        <img src="../img/habitaciones/standar.jpg" alt="Habitación Estándar" />
         <h3>Habitación Estándar</h3>
         <p>
           Disfruta de nuestra habitación estándar con todas las comodidades necesarias para
           una estancia placentera.
         </p>
+        <div class="price">$120,000 COP / noche</div>
       </div>
 
       <div class="service-card">
-        <img src="img/habitaciones/Deluxe.jpg" alt="Habitación Deluxe" />
+        <img src="../img/habitaciones/Deluxe.jpg" alt="Habitación Deluxe" />
         <h3>Habitación Deluxe</h3>
         <p>
           Nuestra habitación deluxe ofrece un espacio más amplio y lujoso, ideal para
           relajarse y descansar.
         </p>
+        <div class="price">$180,000 COP / noche</div>
       </div>
 
       <div class="service-card">
-        <img src="img/habitaciones/president.jpg" alt="Suite Presidencial" />
+        <img src="../img/habitaciones/president.jpg" alt="Suite Presidencial" />
         <h3>Suite Presidencial</h3>
         <p>
           La suite presidencial cuenta con una vista espectacular y servicios exclusivos para
           una experiencia inolvidable.
         </p>
+        <div class="price">$350,000 COP / noche</div>
       </div>
 
       <div class="service-card">
-        <img src="img/habitaciones/complement.jpg" alt="Servicios Complementarios" />
+        <img src="../img/habitaciones/complement.jpg" alt="Servicios Complementarios" />
         <h3>Servicios Complementarios</h3>
         <p>
           Ofrecemos servicio de limpieza diario, acceso a piscina, y gimnasio para todos
@@ -234,21 +277,23 @@ session_start();
       </div>
 
       <div class="service-card">
-        <img src="img/habitaciones/junior.jpg" alt="Habitación Junior" />
+        <img src="../img/habitaciones/junior.jpg" alt="Habitación Junior" />
         <h3>Habitación Junior</h3>
         <p>
           Una habitación moderna, ideal para viajes de negocios o escapadas románticas, con
           una decoración elegante y funcional.
         </p>
+        <div class="price">$220,000 COP / noche</div>
       </div>
 
       <div class="service-card">
-        <img src="img/habitaciones/premium.jpg" alt="Habitación Premium" />
+        <img src="../img/habitaciones/premium.jpg" alt="Habitación Premium" />
         <h3>Habitación Premium</h3>
         <p>
           La habitación Premium cuenta con una decoración sofisticada, servicios exclusivos y
           una vista impresionante para una experiencia única.
         </p>
+        <div class="price">$280,000 COP / noche</div>
       </div>
     </div>
   </section>
@@ -315,11 +360,11 @@ session_start();
         <label for="tipo_habitacion" class="form-label">Tipo de Habitación Preferida</label>
         <select class="form-select" id="tipo_habitacion" name="tipo_habitacion" required>
           <option value="" disabled selected>Seleccione el tipo de habitación</option>
-          <option value="estandar">Habitación Estándar</option>
-          <option value="deluxe">Habitación Deluxe</option>
-          <option value="presidencial">Suite Presidencial</option>
-          <option value="junior">Habitación Junior</option>
-          <option value="premium">Habitación Premium</option>
+          <option value="estandar">Habitación Estándar - $120,000 COP</option>
+          <option value="deluxe">Habitación Deluxe - $180,000 COP</option>
+          <option value="presidencial">Suite Presidencial - $350,000 COP</option>
+          <option value="junior">Habitación Junior - $220,000 COP</option>
+          <option value="premium">Habitación Premium - $280,000 COP</option>
         </select>
       </div>
 
@@ -365,7 +410,7 @@ session_start();
   </div>
 
   <!-- Footer -->
-  <?php include "docs.php/footer.php"; ?>
+  <?php include "../docs/footer.php"; ?>
 
   <!-- Scripts Bootstrap -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->

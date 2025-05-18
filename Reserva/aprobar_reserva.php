@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ingresar.php");
+    header("Location: ../ingresar.php");
     exit;
 }
 
-include 'CRUD/conexion.php';
+include '../CRUD/conexion.php';
 
 $usuario_id = (int)$_SESSION['usuario_id'];
 

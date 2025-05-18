@@ -1,0 +1,1 @@
+<link rel="icon" type="image/png" href="https://png.pngtree.com/png-vector/20191027/ourlarge/pngtree-hotel-building-vector-illustration-with-simple-design-hotel-icon-png-image_1850754.jpg" />

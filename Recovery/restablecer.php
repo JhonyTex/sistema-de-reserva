@@ -110,6 +110,7 @@ if ($token) {
                     }
                 </style>
             </head>
+                <?php include '../docs/iconito.php'; ?>
             <body>
                 <div class="container">
                     <h2>Restablecer Contraseña</h2>

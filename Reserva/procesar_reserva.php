@@ -3,17 +3,15 @@ session_start();
 
 if (!isset($_SESSION['usuario_id'])) {
     // Usuario no logueado, redirigir a la página de login
-    header("Location: ingresar.php");
+    header("Location: ../ingresar.php");
     exit;
 }
 
-include 'CRUD/conexion.php'; // conexión a la base de datos
+include '../CRUD/conexion.php'; // conexión a la base de datos
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener el id del usuario desde la sesión
     $usuario_id = (int)$_SESSION['usuario_id'];
 
-    // Escapar y preparar datos para evitar inyección SQL
     $nombre = $conn->real_escape_string($_POST['nombre']);
     $apellido = $conn->real_escape_string($_POST['apellido']);
     $correo = $conn->real_escape_string($_POST['correo']);
@@ -26,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $metodo_pago = $conn->real_escape_string($_POST['metodo_pago']);
     $estado = 'pendiente';
 
-    // Consulta SQL para insertar la reserva
     $sql = "INSERT INTO reservas (
                 usuario_id, fecha_reserva, nombre, apellido, correo,
                 fecha_ingreso, fecha_salida, cantidad_personas, tipo_habitacion,
@@ -38,14 +35,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             )";
 
     if ($conn->query($sql) === TRUE) {
-        // Reserva exitosa, redirigir o mostrar mensaje
-        header("Location: perfil.php?reserva=exitosa");
-        exit;
+        $_SESSION['reserva_mensaje'] = "Reserva realizada con éxito. ¡Gracias por elegirnos!";
+        $_SESSION['reserva_tipo'] = "success";
     } else {
-        echo "Error al realizar la reserva: " . $conn->error;
+        $_SESSION['reserva_mensaje'] = "Error al realizar la reserva: " . $conn->error;
+        $_SESSION['reserva_tipo'] = "danger";
     }
 
     $conn->close();
+
+    // Redirigir siempre a servicios.php
+    header("Location: servicios.php");
+    exit;
 
 } else {
     echo "Método de solicitud no permitido.";

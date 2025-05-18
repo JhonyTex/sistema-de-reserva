@@ -1,9 +1,9 @@
 <?php
 session_start();
-include 'CRUD/conexion.php';
+include '../CRUD/conexion.php';
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== 'administrador') {
-    header("Location: ingresar.php");
+    header("Location: ../ingresar.php");
     exit;
 }
 
@@ -77,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Responder Mensaje</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
+<?php include '../docs/iconito.php'; ?>
 <body>
 <div class="container mt-5">
     <h2>Responder Mensaje de Contacto</h2>
