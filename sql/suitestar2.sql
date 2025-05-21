@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-05-2025 a las 00:56:46
+-- Tiempo de generación: 21-05-2025 a las 03:54:24
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -63,8 +63,10 @@ CREATE TABLE `contactos` (
 --
 
 INSERT INTO `contactos` (`id`, `nombre`, `correo`, `motivo_id`, `mensaje`, `fecha`, `fecha_envio`) VALUES
-(4, 'Arnol', 'Arnol@gmail.com', 4, '¿Puedo cancelar una reserva?', '2025-05-17 22:07:17', '2025-05-17 17:07:17'),
-(5, 'Arnol', 'Arnol@gmail.com', 4, 'Necesito ayuda', '2025-05-17 22:21:31', '2025-05-17 17:21:31');
+(12, 'Arnol', 'Arnol@gmail.com', 2, 'hola', '2025-05-18 18:39:47', '2025-05-18 13:39:47'),
+(13, 'Arnol', 'Arnol@gmail.com', 3, 'hola', '2025-05-18 18:45:02', '2025-05-18 13:45:02'),
+(14, 'Arnol', 'Arnol@gmail.com', 1, 'ruido', '2025-05-18 18:45:39', '2025-05-18 13:45:39'),
+(15, 'Arnol', 'Arnol@gmail.com', 3, 'Hola, me siento feliz', '2025-05-19 01:00:38', '2025-05-18 20:00:38');
 
 -- --------------------------------------------------------
 
@@ -128,7 +130,53 @@ CREATE TABLE `reservas` (
 --
 
 INSERT INTO `reservas` (`id`, `usuario_id`, `fecha_reserva`, `nombre`, `apellido`, `correo`, `fecha_ingreso`, `fecha_salida`, `cantidad_personas`, `tipo_habitacion`, `estado`, `telefono`, `preferencias_especiales`, `metodo_pago`) VALUES
-(1, 16, '2025-05-17 22:03:39', 'Arnol', 'v', 'Arnol@gmail.com', '2025-05-17', '2025-05-20', 3, 'estandar', 'pendiente', '3195378456', 'Hola', 'tarjeta_credito');
+(9, 16, '2025-05-19 01:00:00', 'Arnol', 'v', 'Arnol@gmail.com', '2025-05-18', '2025-05-23', 3, 'presidencial', 'confirmada', '3195378456', 'Hola', 'tarjeta_credito');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `respuestas_automaticas`
+--
+
+CREATE TABLE `respuestas_automaticas` (
+  `id` int(11) NOT NULL,
+  `motivo` varchar(50) NOT NULL,
+  `palabra_clave` varchar(255) NOT NULL,
+  `respuesta` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `respuestas_automaticas`
+--
+
+INSERT INTO `respuestas_automaticas` (`id`, `motivo`, `palabra_clave`, `respuesta`) VALUES
+(1, 'consulta', 'hola', '¡Hola! ¿En qué podemos ayudarte hoy?'),
+(2, 'consulta', 'buenos dias', '¡Buenos días! Estamos aquí para ayudarte.'),
+(3, 'consulta', 'buenas tardes', '¡Buenas tardes! ¿Cómo podemos asistirte?'),
+(4, 'consulta', 'buenas noches', '¡Buenas noches! Si necesitas algo, estamos disponibles.'),
+(5, 'consulta', 'gracias', '¡Gracias a ti por contactarnos! Estamos para servirte.'),
+(6, 'consulta', 'muchas gracias', 'Nos alegra poder ayudarte, ¡que tengas un excelente día!'),
+(7, 'consulta', 'agradecido', 'Es un placer ayudarte, cualquier cosa aquí estamos.'),
+(8, 'consulta', 'horario', 'Nuestro horario de atención es de 8am a 8pm todos los días.'),
+(9, 'consulta', 'piscina', 'La piscina está abierta de 7am a 10pm.'),
+(10, 'consulta', 'wifi', 'Ofrecemos wifi gratuito en todas las instalaciones.'),
+(11, 'consulta', 'desayuno', 'El desayuno se sirve de 6am a 10am en el restaurante principal.'),
+(12, 'consulta', 'estacionamiento', 'Contamos con parqueadero gratuito para huéspedes.'),
+(13, 'consulta', 'spa', 'Nuestro spa ofrece servicios desde las 9am hasta las 8pm.'),
+(14, 'consulta', 'cancelacion', 'Las cancelaciones deben realizarse con mínimo 24 horas de anticipación sin penalización.'),
+(15, 'consulta', 'checkin', 'El check-in es a partir de las 2pm y el check-out hasta las 12pm.'),
+(16, 'consulta', 'mascotas', 'Aceptamos mascotas pequeñas bajo solicitud previa y con costo adicional.'),
+(17, 'queja', 'ruido', 'Lamentamos el ruido. Estamos trabajando para mejorar la tranquilidad en nuestras instalaciones.'),
+(18, 'queja', 'limpieza', 'Lamentamos el inconveniente con la limpieza. Por favor, comunícate con recepción para resolverlo.'),
+(19, 'queja', 'internet', 'Sentimos los problemas con el internet, nuestro equipo técnico ya está atendiendo el caso.'),
+(20, 'queja', 'servicio', 'Nos disculpamos si el servicio no cumplió tus expectativas. Trabajaremos para mejorar.'),
+(21, 'queja', 'habitacion', 'Lamentamos cualquier problema con la habitación. Por favor, notifícanos para ayudarte.'),
+(22, 'reclamo', 'factura', 'Si tienes dudas sobre la factura, por favor contacta a nuestro departamento administrativo.'),
+(23, 'reclamo', 'cargo', 'Para aclarar cargos en tu cuenta, por favor envíanos los detalles y los revisaremos.'),
+(24, 'reclamo', 'reserva', 'Si hubo un problema con tu reserva, escríbenos y te ayudaremos a solucionarlo.'),
+(25, 'felicitacion', 'servicio', '¡Gracias por tu felicitación! Nos alegra que hayas disfrutado nuestro servicio.'),
+(26, 'felicitacion', 'personal', 'Agradecemos tus palabras sobre nuestro personal, las compartiremos con ellos.'),
+(27, 'felicitacion', 'instalaciones', 'Gracias por valorar nuestras instalaciones, esperamos verte pronto de nuevo.');
 
 -- --------------------------------------------------------
 
@@ -150,8 +198,7 @@ CREATE TABLE `respuestas_contactos` (
 --
 
 INSERT INTO `respuestas_contactos` (`id`, `contacto_id`, `admin_id`, `respuesta`, `fecha_respuesta`, `calificacion_usuario`) VALUES
-(2, 4, 6, 'Si, señor. Digame si la desea cancelar, le puedo colaborar', '2025-05-17 17:08:23', NULL),
-(3, 5, 6, 'Cuenteme señor que le ocurre', '2025-05-17 17:48:53', 3);
+(9, 15, 6, 'Hola, me da mucho gusto', '2025-05-18 20:01:37', NULL);
 
 -- --------------------------------------------------------
 
@@ -167,15 +214,6 @@ CREATE TABLE `respuestas_usuario` (
   `fecha_respuesta` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `respuestas_usuario`
---
-
-INSERT INTO `respuestas_usuario` (`id`, `contacto_id`, `usuario_id`, `respuesta`, `fecha_respuesta`) VALUES
-(1, 5, 16, 'Hola', '2025-05-17 17:39:00'),
-(2, 5, 16, 'Hola, no me responde', '2025-05-17 17:45:17'),
-(3, 5, 16, 'holaaaa', '2025-05-17 17:55:01');
-
 -- --------------------------------------------------------
 
 --
@@ -189,18 +227,6 @@ CREATE TABLE `respuestas_usuario_admin` (
   `respuesta` text NOT NULL,
   `fecha_respuesta` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `respuestas_usuario_admin`
---
-
-INSERT INTO `respuestas_usuario_admin` (`id`, `respuesta_usuario_id`, `admin_id`, `respuesta`, `fecha_respuesta`) VALUES
-(1, 1, 6, 'Hola, cuenteme', '2025-05-17 17:44:27'),
-(2, 2, 6, 'Hola si', '2025-05-17 17:45:39'),
-(3, 2, 6, 'Si, hola', '2025-05-17 17:48:43'),
-(4, 1, 6, 'Hola, esta es la prueba 1', '2025-05-17 17:50:33'),
-(5, 1, 6, 'Si, hola prueba 2', '2025-05-17 17:54:07'),
-(6, 3, 6, 'hola, si', '2025-05-17 17:55:31');
 
 -- --------------------------------------------------------
 
@@ -248,7 +274,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `rol_id`, `correo`, `cedula`, `nombre`, `apellido`, `contrasena`, `fecha_registro`, `imagen_perfil`, `descripcion`, `fecha_nacimiento`) VALUES
 (6, 1, 'admin1@gmail.com', '102030', 'Admin', '1', '$2y$10$QdwVR0W8dncYVnY41WJua.yJ.4h5mrNpn0l1XH1pjOYja2O2kMnyy', '2024-11-28 17:12:56', '6_admin1.png', 'Administrador principal', '2000-11-20'),
-(16, 3, 'Arnol@gmail.com', '1025645', 'Arnol', 'Zack', '$2y$10$VDQVlxHkxeHl8IBr/oUVJek00Q/ffaUQiagAtN2ciw4dIN5C9Xx7S', '2025-05-17 18:44:01', '16_avatar1.jpg', NULL, NULL);
+(16, 3, 'Arnol@gmail.com', '1025645', 'Arnol', 'Zack', '$2y$10$VDQVlxHkxeHl8IBr/oUVJek00Q/ffaUQiagAtN2ciw4dIN5C9Xx7S', '2025-05-17 18:44:01', '16_avatar1.jpg', 'Hola', '2025-05-18');
 
 --
 -- Índices para tablas volcadas
@@ -287,6 +313,12 @@ ALTER TABLE `recuperacion_password`
 ALTER TABLE `reservas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `usuario_id` (`usuario_id`);
+
+--
+-- Indices de la tabla `respuestas_automaticas`
+--
+ALTER TABLE `respuestas_automaticas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `respuestas_contactos`
@@ -341,7 +373,7 @@ ALTER TABLE `boletin`
 -- AUTO_INCREMENT de la tabla `contactos`
 --
 ALTER TABLE `contactos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `motivos`
@@ -359,25 +391,31 @@ ALTER TABLE `recuperacion_password`
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `respuestas_automaticas`
+--
+ALTER TABLE `respuestas_automaticas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `respuestas_contactos`
 --
 ALTER TABLE `respuestas_contactos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `respuestas_usuario`
 --
 ALTER TABLE `respuestas_usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `respuestas_usuario_admin`
 --
 ALTER TABLE `respuestas_usuario_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
