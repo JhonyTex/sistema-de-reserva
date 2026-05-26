@@ -10,6 +10,7 @@
 
   <style>
     /* Para que el contenido no quede debajo del nav fijo */
+    /*Realice un cambio/
     body {
       padding-top: 60px; /* Ajusta si el nav es más alto o bajo */
       font-family: Arial, sans-serif;
